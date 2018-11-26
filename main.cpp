@@ -12,7 +12,7 @@ MatrixXd cubicSpline(const VectorXd &T, const VectorXd &Y) {
     // of the cubic polynomial on a subinterval.
     // Assumes T is sorted, has no repeated elements and T.size() == Y.size().
 
-    int n = T.size() - 1; // T and Y have length n+1
+    long n = T.size() - 1; // T and Y have length n+1
 
     VectorXd h(n);
 
@@ -87,10 +87,10 @@ VectorXd evalCubicSpline(const MatrixXd &S, const VectorXd &T, const VectorXd &e
     // Returns the values of the spline S calculated in the points X.
     // Assumes T is sorted, with no repetetions.
 
-    int n = evalT.size();
+    long n = evalT.size();
 
     VectorXd out(n);
-    int m = T.size();
+    long m = T.size();
 
 
     for (int i = 0; i < n; i++) {
@@ -98,8 +98,8 @@ VectorXd evalCubicSpline(const MatrixXd &S, const VectorXd &T, const VectorXd &e
             if (evalT(i) < T(j + 1) || j == m - 2) {
                 double value = evalT(i) - T(j);
                 double a = value * S(1, j);
-                double b = value *value * S(2, j);
-                double c = value *value *value * S(3, j);
+                double b = value * value * S(2, j);
+                double c = value * value * value * S(3, j);
 
                 double ab = a + b;
                 double cd = c + S(0, j);
